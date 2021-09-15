@@ -1,0 +1,29 @@
+
+{
+  "name": "react-native-mjdunion",
+  "version": "1.0.0",
+  "summary": "-",
+  "description": "react-native library for JD Kepler",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native",
+    "kepler",
+    "react",
+    "react-component",
+    "ios",
+    "android",
+    "京东开普勒"
+  ],
+  "license": "MIT",
+  "author": "bashen1 <maochunjie@gmail.com>",
+  "bugs": {
+    "url": "https://github.com/bashen1/react-native-mjdunion/issues"
+  },
+  "homepage": "https://github.com/bashen1/react-native-mjdunion#readme",
+  "peerDependencies": {
+    "react-native": ">=0.60"
+  }
+}
