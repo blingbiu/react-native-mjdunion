@@ -103,8 +103,28 @@ public class RNReactNativeMjdunionModule extends ReactContextBaseJavaModule {
         String url = data.getString("url");
 
         mKelperTask = KeplerApiManager.getWebViewService()
-                .openAppWebViewPageJX(reactContext, url, mKeplerAttachParameter,
-                        mOpenAppAction);
+            .openAppWebViewPageJX(reactContext, url, mKeplerAttachParameter,
+                new OpenAppAction() {
+                    @Override
+                    public void onStatus(final int status, final String url) {
+                        WritableMap map = Arguments.createMap();
+                        map.putString("code", Integer.toString(status));
+                        if (status == OpenAppAction.OpenAppAction_result_NoJDAPP) {
+                            map.putString("message", url);
+                        } else if (status == OpenAppAction.OpenAppAction_result_BlackUrl) {
+                            map.putString("message", url);
+                        } else if (status == OpenAppAction.OpenAppAction_result_ErrorScheme) {
+                            map.putString("message", url);
+                        } else if (status == OpenAppAction.OpenAppAction_result_APP) {
+                            //成功唤醒app
+                        } else if (status == OpenAppAction.OpenAppAction_result_uawakeId_empty) {
+                            map.putString("message", "缺少依赖文件，请检查libs文件夹中文件完整性，重新进行集成");
+                        } else if (status == OpenAppAction.OpenAppAction_result_NetError) {
+                            map.putString("message", "网络异常，请检查网络连接是否开启");
+                        }
+                        p.resolve(map);
+                    };
+                });
 
     }
 
@@ -123,7 +143,27 @@ public class RNReactNativeMjdunionModule extends ReactContextBaseJavaModule {
         }
         String url = data.getString("url");
         mKelperTask = KeplerApiManager.getWebViewService()
-                .openAppWebViewPage(reactContext, url, mKeplerAttachParameter,
-                        mOpenAppAction);
+            .openAppWebViewPage(reactContext, url, mKeplerAttachParameter,
+                new OpenAppAction() {
+                    @Override
+                    public void onStatus(final int status, final String url) {
+                        WritableMap map = Arguments.createMap();
+                        map.putString("code", Integer.toString(status));
+                        if (status == OpenAppAction.OpenAppAction_result_NoJDAPP) {
+                            map.putString("message", url);
+                        } else if (status == OpenAppAction.OpenAppAction_result_BlackUrl) {
+                            map.putString("message", url);
+                        } else if (status == OpenAppAction.OpenAppAction_result_ErrorScheme) {
+                            map.putString("message", url);
+                        } else if (status == OpenAppAction.OpenAppAction_result_APP) {
+                            //成功唤醒app
+                        } else if (status == OpenAppAction.OpenAppAction_result_uawakeId_empty) {
+                            map.putString("message", "缺少依赖文件，请检查libs文件夹中文件完整性，重新进行集成");
+                        } else if (status == OpenAppAction.OpenAppAction_result_NetError) {
+                            map.putString("message", "网络异常，请检查网络连接是否开启");
+                        }
+                        p.resolve(map);
+                    };
+                });
     }
 }
