@@ -37,7 +37,7 @@
 
 ## 其他配置
 
-#### ios
+#### iOS
 1. 将下载的京东联盟iOS SDK（JDSDK.bundle，内含安全图片）引入到自己的项目中（ps：JDSDK.framework已打包在模块里，无需引入到项目中）;
 2. URL Schemes 添加 sdkback + 京东联盟appKey
 3. LSApplicationQueriesSchemes 添加 jdlogin、openapp.jdmobile、openapp.jdpingou
@@ -52,7 +52,7 @@
    ]
    ```
 3. 配置混淆
-  `-keep class com.kepler.jd.**{ public <fields>; public <methods>; public *; }`
+    `-keep class com.kepler.jd.**{ public <fields>; public <methods>; public *; }`
 
 
 ## 使用方法
@@ -84,3 +84,16 @@ showJXItemByUrl = async ()=>{
 }
 
 ```
+
+## 注意事项
+
+```
+未转链的京东url（原始链接）：会走兜底渠道，目前新SDK上兜底PID随机
+1. 进行跳转京东app，默认跟到的账号是当前创建appKey时的账号， 渠道号随机
+2. 进行跳转京喜app，默认跟到的账号是当前创建appKey时的账号， 无渠道号
+
+传入转链后的京东url(其他账号的渠道号推广转链)：
+1. 进行跳转京东app，以传入的推广链接的账号为优先；
+2. 进行跳转京喜app，以传入的推广链接的账号为优先；
+```
+
